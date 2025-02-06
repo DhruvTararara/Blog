@@ -96,7 +96,7 @@ module Pipeline_queue #(parameter data_width = 16, max_entries = 4)(
     
     //Data Output
     always @ (*) begin
-        if (rst) {n_valid1, n_valid2} <= 2'b00;
+        if (rst | FLUSH) {n_valid1, n_valid2} <= 2'b00;
         else begin
             if (Busy[head] & Busy[head + 1]) {n_valid1, n_valid2} <= 2'b11;
             else if (Busy[head] & valid1) {n_valid1, n_valid2} <= 2'b11;
